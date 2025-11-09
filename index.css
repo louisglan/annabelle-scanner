@@ -28,7 +28,7 @@ body {
     max-width: 100%;
     margin-top: 3in;
     animation: google 2s linear forwards;
-    animation-timeline: scroll();
+    animation-play-state: paused;
 }
 
 .scanner {
