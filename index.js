@@ -15,14 +15,24 @@ body.addEventListener('touchmove', (e) => {
         y: e.touches[0].clientY
     };
     lastTouch = currentTouch;
-    scan(currentTouch.x, currentTouch.y);
+    scan(currentTouch, lastTouch);
 });
 
-const scan = (touchEndX, touchEndY) => {
+const scan = (currentTouch, lastTouch) => {
+    for (let i = 0; i < 10; i++) {
+        const interpolatedTouch = {
+            x: lastTouch.x + (currentTouch.x - lastTouch.x) * (i / 10),
+            y: lastTouch.y + (currentTouch.y - lastTouch.y) * (i / 10)
+        };
+        createScanner(interpolatedTouch);
+    }
+}
+
+const createScanner = (touch) => {
     const scanner = document.createElement('div');
     scanner.classList.add('scanner');
-    scanner.style.left = `${touchEndX}px`;
-    scanner.style.top = `${touchEndY - 2000/2}px`;
+    scanner.style.left = `${touch.x}px`;
+    scanner.style.top = `${touch.y - 2000/2}px`;
     body.appendChild(scanner);
     setTimeout(() => {
         body.removeChild(scanner);
