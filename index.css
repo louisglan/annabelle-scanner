@@ -30,15 +30,3 @@ body {
     animation: google 2s linear forwards;
     animation-play-state: paused;
 }
-
-.scanner {
-    position: fixed;
-    width: 4px;
-    height: 2000px;
-    background: green;
-    transform: rotate(90deg);
-    -webkit-box-shadow:0 0 20px white; 
-    -moz-box-shadow: 0 0 20px white; 
-    box-shadow:0 0 20px white;
-    opacity: 0.5;
-}
