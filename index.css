@@ -1,0 +1,44 @@
+@keyframes google {
+    0% {
+	    transform: scale(0, 0);
+    }
+
+    10% {
+        transform: scale(1, 1);
+    }
+
+    20% {
+        transform: translateX(100em);
+    }
+
+    100% {
+        transform: translateX(100em);
+    }
+}
+
+body {
+    block-size: 1000vh;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+
+#google-logo {
+    position: fixed;
+    max-width: 100%;
+    margin-top: 3in;
+    animation: google 2s linear forwards;
+    animation-timeline: scroll();
+}
+
+.scanner {
+    position: fixed;
+    width: 4px;
+    height: 2000px;
+    background: green;
+    transform: rotate(90deg);
+    -webkit-box-shadow:0 0 20px white; 
+    -moz-box-shadow: 0 0 20px white; 
+    box-shadow:0 0 20px white;
+    opacity: 0.5;
+}
