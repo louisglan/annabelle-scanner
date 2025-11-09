@@ -35,10 +35,10 @@ body {
     position: fixed;
     width: 4px;
     height: 2000px;
-    background: rgb(232, 193, 250);
+    background: green;
     transform: rotate(90deg);
-    -webkit-box-shadow:0 0 80px purple; 
-    -moz-box-shadow: 0 0 80px purple; 
-    box-shadow:0 0 80px purple;
+    -webkit-box-shadow:0 0 20px white; 
+    -moz-box-shadow: 0 0 20px white; 
+    box-shadow:0 0 20px white;
     opacity: 0.5;
 }
