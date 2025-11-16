@@ -3,12 +3,8 @@
 	    transform: scale(0, 0);
     }
 
-    10% {
+    50% {
         transform: scale(1, 1);
-    }
-
-    20% {
-        transform: translateX(100em);
     }
 
     100% {
@@ -17,18 +13,28 @@
 }
 
 body {
-    block-size: 1000svh;
-    display: flex;
-    justify-content: center;
     background-color: black;
 }
 
-#google-logo {
+.scene {
     position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+#google-logo {
+    /* position: absolute; */
     max-width: 100%;
     margin-top: 3in;
     animation: google 2s linear forwards;
     animation-play-state: paused;
+}
+
+#scroll-container {
+    height: 400vh;
+    position: relative;
 }
 
 .scanner {
