@@ -1,16 +1,16 @@
 body {
   margin: 0;
   height: 500vh; /* Long scroll to map 0–100% */
-  background-color: black;
+  background: #f5f5f5;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
 }
 
 /* Center container for animations */
 .stage {
-  position: fixed;
   display: flex;
   justify-content: center;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -43,26 +43,4 @@ body {
   font-size: 60px;
   font-weight: bold;
   color: #333;
-}
-
-.scanner {
-  position: fixed;
-  width: 2000px;
-  height: 10px;
-  background: green;
-  -webkit-box-shadow: 0 0 20px white;
-  -moz-box-shadow: 0 0 20px white;
-  box-shadow: 0 0 20px white;
-  opacity: 0.5;
-  animation: scan 2s linear forwards;
-}
-
-@keyframes scan {
-  from {
-    transform: translateY(0vh);
-  }
-
-  to {
-    transform: translateY(600svh);
-  }
 }
