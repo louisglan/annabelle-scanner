@@ -1,4 +1,4 @@
-const totalFrames = 43;
+const totalFrames = 42;
 const framePath = (i) => `./assets/${i}.jpg`;
 
 // DOM elements
@@ -39,24 +39,22 @@ function animate() {
     const p = (progress - 0.3) / 0.05;
     gifFrame.style.opacity = p;
     gifFrame.style.transform = `translateY(${200 - 200 * p}px)`;
-  } else if (progress < 0.6) {
-    const p = (progress - 0.35) / 0.25;
+  } else {
+    const p = (progress - 0.35) / 0.65;
     const frameIndex = Math.min(totalFrames - 1, Math.floor(p * totalFrames));
     gifFrame.src = frames[frameIndex].src;
     gifFrame.style.opacity = 1;
     gifFrame.style.transform = `translateY(0px)`;
-  } else {
-    gifFrame.style.opacity = 0;
   }
 
   // STEP 3: TBC
-  if (progress >= 0.6) {
-    const p = (progress - 0.6) / 0.4;
-    tbc.style.opacity = p;
-    tbc.style.transform = `translateX(-50%) scale(${0.5 + p * 0.8})`;
-  } else {
-    tbc.style.opacity = 0;
-  }
+  // if (progress >= 0.6) {
+  //   const p = (progress - 0.6) / 0.4;
+  //   tbc.style.opacity = p;
+  //   tbc.style.transform = `translateX(-50%) scale(${0.5 + p * 0.8})`;
+  // } else {
+  //   tbc.style.opacity = 0;
+  // }
 
   requestAnimationFrame(animate);
 }

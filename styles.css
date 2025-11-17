@@ -1,7 +1,7 @@
 body {
   margin: 0;
   height: 500vh; /* Long scroll to map 0–100% */
-  background-color: black;
+  /* background-color: black; */
   font-family: Arial, sans-serif;
   overflow-x: hidden;
 }
