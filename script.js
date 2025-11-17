@@ -1,6 +1,5 @@
-const totalFrames = 35;
-const framePath = (i) =>
-  `assets/frame_${String(i).padStart(2, "0")}_delay-0.07s.png`;
+const totalFrames = 43;
+const framePath = (i) => `./assets/${i}.jpg`;
 
 // DOM elements
 const googleLogo = document.getElementById("googleLogo");
@@ -9,7 +8,7 @@ const tbc = document.getElementById("tbc");
 
 // --- Preload GIF frames ---
 const frames = [];
-for (let i = 0; i < totalFrames; i++) {
+for (let i = 1; i <= totalFrames; i++) {
   const img = new Image();
   img.src = framePath(i);
   frames.push(img);
@@ -39,7 +38,7 @@ function animate() {
   } else if (progress < 0.35) {
     const p = (progress - 0.3) / 0.05;
     gifFrame.style.opacity = p;
-    gifFrame.style.transform = `translateY(${-200 + 200 * p}px)`;
+    gifFrame.style.transform = `translateY(${200 - 200 * p}px)`;
   } else if (progress < 0.6) {
     const p = (progress - 0.35) / 0.25;
     const frameIndex = Math.min(totalFrames - 1, Math.floor(p * totalFrames));
