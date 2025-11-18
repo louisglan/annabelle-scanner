@@ -7,7 +7,7 @@ const chromeFramePath = (i) => `./assets/chrome/${i}.jpg`;
 // DOM elements
 const googleLogo = document.getElementById("googleLogo");
 const fortuneTeller = document.getElementById("fortuneTeller");
-const tbc = document.getElementById("tbc");
+const body = document.body;
 
 // --- Preload GIF frames ---
 const fortuneTellerFrames = [];
@@ -47,10 +47,15 @@ function animate() {
     animateGif(p, totalChromeFrames, googleLogo, chromeFrames);
   } else if (progress < 0.35) {
     const p = (progress - 0.3) / 0.05;
+    fortuneTeller.src = fortuneTellerFrames[0].src;
     fortuneTeller.style.opacity = p;
     fortuneTeller.style.transform = `translateY(${200 - 200 * p}px)`;
+  } else if (progress <= 0.4) {
+    const p = (progress - 0.35) / 0.05;
+    fortuneTeller.src = fortuneTellerFrames[0].src;
+    fortuneTeller.style.opacity = 1;
   } else if (progress <= 0.7) {
-    const p = (progress - 0.35) / 0.35;
+    const p = (progress - 0.4) / 0.3;
     animateGif(p, totalFortuneTellerFrames, fortuneTeller, fortuneTellerFrames);
     fortuneTeller.style.opacity = 1;
     fortuneTeller.style.transform = `translateY(0px)`;
@@ -61,6 +66,7 @@ function animate() {
     const scaleX = 1 + p * 3.0; // change multiplier to taste
     const scaleY = 1 + p * 3.0;
     fortuneTeller.style.transform = `translateY(0px) rotate(${rotateDeg}deg) scaleX(${scaleX}) scaleY(${scaleY})`;
+    fortuneTeller.style.filter = `blur(${p}px)`;
   }
 
   requestAnimationFrame(animate);
@@ -72,6 +78,21 @@ function animateGif(progress, totalFrames, image, frames) {
     Math.floor(progress * totalFrames)
   );
   image.src = frames[frameIndex].src;
+}
+
+body.addEventListener('touchstart', () => {
+    scan();
+});
+
+const scan = () => {
+    const scanner = document.createElement('div');
+    scanner.classList.add('scanner');
+    scanner.style.left = `${-1000}px`;
+    scanner.style.top = `${0}px`;
+    body.appendChild(scanner);
+    setTimeout(() => {
+        body.removeChild(scanner);
+    }, 300);
 }
 
 requestAnimationFrame(animate);
