@@ -1,5 +1,5 @@
 const totalFrames = 42;
-const framePath = (i) => `./assets/${i}.jpg`;
+const framePath = (i) => `./assets/${i}.png`;
 
 // DOM elements
 const googleLogo = document.getElementById("googleLogo");
