@@ -49,11 +49,18 @@ function animate() {
     const p = (progress - 0.3) / 0.05;
     fortuneTeller.style.opacity = p;
     fortuneTeller.style.transform = `translateY(${200 - 200 * p}px)`;
-  } else {
-    const p = (progress - 0.35) / 0.65;
+  } else if (progress <= 0.7) {
+    const p = (progress - 0.35) / 0.35;
     animateGif(p, totalFortuneTellerFrames, fortuneTeller, fortuneTellerFrames);
     fortuneTeller.style.opacity = 1;
     fortuneTeller.style.transform = `translateY(0px)`;
+  } else {
+    fortuneTeller.src = fortuneTellerFrames[41].src;
+    const p = (progress - 0.7) / 0.3;
+    const rotateDeg = p * 45;
+    const scaleX = 1 + p * 3.0; // change multiplier to taste
+    const scaleY = 1 + p * 3.0;
+    fortuneTeller.style.transform = `translateY(0px) rotate(${rotateDeg}deg) scaleX(${scaleX}) scaleY(${scaleY})`;
   }
 
   requestAnimationFrame(animate);
