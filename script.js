@@ -1,17 +1,27 @@
-const totalFrames = 42;
-const framePath = (i) => `./assets/${i}.png`;
+const totalFortuneTellerFrames = 42;
+const totalChromeFrames = 6;
+
+const fortuneTellerFramePath = (i) => `./assets/fortune-teller/${i}.png`;
+const chromeFramePath = (i) => `./assets/chrome/${i}.jpg`;
 
 // DOM elements
 const googleLogo = document.getElementById("googleLogo");
-const gifFrame = document.getElementById("gifFrame");
+const fortuneTeller = document.getElementById("fortuneTeller");
 const tbc = document.getElementById("tbc");
 
 // --- Preload GIF frames ---
-const frames = [];
-for (let i = 1; i <= totalFrames; i++) {
+const fortuneTellerFrames = [];
+for (let i = 1; i <= totalFortuneTellerFrames; i++) {
   const img = new Image();
-  img.src = framePath(i);
-  frames.push(img);
+  img.src = fortuneTellerFramePath(i);
+  fortuneTellerFrames.push(img);
+}
+
+const chromeFrames = [];
+for (let i = 1; i <= totalChromeFrames; i++) {
+  const img = new Image();
+  img.src = chromeFramePath(i);
+  chromeFrames.push(img);
 }
 
 // --- Scroll Animation ---
@@ -22,41 +32,39 @@ function animate() {
   // STEP 1: Google logo
   if (progress < 0.15) {
     const p = progress / 0.15;
-    googleLogo.style.opacity = p;
     googleLogo.style.transform = `scale(${p}) translateX(0px)`;
   } else if (progress < 0.3) {
-    googleLogo.style.opacity = 1;
     const p = (progress - 0.15) / 0.15;
-    googleLogo.style.transform = `scale(1) translateX(${p * 400}px)`;
+    googleLogo.style.opacity = 1 - p;
   } else {
     googleLogo.style.opacity = 0;
   }
 
   // STEP 2: GIF
   if (progress < 0.3) {
-    gifFrame.style.opacity = 0;
+    fortuneTeller.style.opacity = 0;
+    const p = progress / 0.3;
+    animateGif(p, totalChromeFrames, googleLogo, chromeFrames);
   } else if (progress < 0.35) {
     const p = (progress - 0.3) / 0.05;
-    gifFrame.style.opacity = p;
-    gifFrame.style.transform = `translateY(${200 - 200 * p}px)`;
+    fortuneTeller.style.opacity = p;
+    fortuneTeller.style.transform = `translateY(${200 - 200 * p}px)`;
   } else {
     const p = (progress - 0.35) / 0.65;
-    const frameIndex = Math.min(totalFrames - 1, Math.floor(p * totalFrames));
-    gifFrame.src = frames[frameIndex].src;
-    gifFrame.style.opacity = 1;
-    gifFrame.style.transform = `translateY(0px)`;
+    animateGif(p, totalFortuneTellerFrames, fortuneTeller, fortuneTellerFrames);
+    fortuneTeller.style.opacity = 1;
+    fortuneTeller.style.transform = `translateY(0px)`;
   }
 
-  // STEP 3: TBC
-  // if (progress >= 0.6) {
-  //   const p = (progress - 0.6) / 0.4;
-  //   tbc.style.opacity = p;
-  //   tbc.style.transform = `translateX(-50%) scale(${0.5 + p * 0.8})`;
-  // } else {
-  //   tbc.style.opacity = 0;
-  // }
-
   requestAnimationFrame(animate);
+}
+
+function animateGif(progress, totalFrames, image, frames) {
+  const frameIndex = Math.min(
+    totalFrames - 1,
+    Math.floor(progress * totalFrames)
+  );
+  image.src = frames[frameIndex].src;
 }
 
 requestAnimationFrame(animate);

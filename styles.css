@@ -22,7 +22,7 @@ body {
 #googleLogo {
   position: absolute;
   width: 300px;
-  opacity: 0;
+  opacity: 1;
   transform: scale(0) translateX(0px);
   transition: none;
 }
