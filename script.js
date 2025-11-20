@@ -80,19 +80,34 @@ function animateGif(progress, totalFrames, image, frames) {
   image.src = frames[frameIndex].src;
 }
 
-body.addEventListener('touchstart', () => {
-    scan();
+body.addEventListener("touchstart", () => {
+  scan();
 });
 
 const scan = () => {
-    const scanner = document.createElement('div');
-    scanner.classList.add('scanner');
-    scanner.style.left = `${-1000}px`;
-    scanner.style.top = `${0}px`;
-    body.appendChild(scanner);
-    setTimeout(() => {
-        body.removeChild(scanner);
-    }, 300);
+  const scanner = document.createElement("div");
+  scanner.classList.add("scanner");
+  scanner.style.left = `${-1000}px`;
+  scanner.style.top = `${0}px`;
+  body.appendChild(scanner);
+  setTimeout(() => {
+    body.removeChild(scanner);
+  }, 300);
+};
+
+const topShadow = document.querySelector(".page-shadow.top");
+const bottomShadow = document.querySelector(".page-shadow.bottom");
+
+function updateScrollShadows() {
+  const top = window.scrollY;
+  const bottom =
+    window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+
+  topShadow.style.opacity = top > 0 ? 1 : 0;
+  bottomShadow.style.opacity = bottom ? 0 : 1;
 }
+
+window.addEventListener("scroll", updateScrollShadows);
+updateScrollShadows();
 
 requestAnimationFrame(animate);
