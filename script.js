@@ -95,19 +95,7 @@ const scan = () => {
   }, 300);
 };
 
-const topShadow = document.querySelector(".page-shadow.top");
 const bottomShadow = document.querySelector(".page-shadow.bottom");
-
-function updateScrollShadows() {
-  const top = window.scrollY;
-  const bottom =
-    window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
-
-  topShadow.style.opacity = top > 0 ? 1 : 0;
-  bottomShadow.style.opacity = bottom ? 0 : 1;
-}
-
-window.addEventListener("scroll", updateScrollShadows);
-updateScrollShadows();
+window.addEventListener("scroll", () => (bottomShadow.style.opacity = 0));
 
 requestAnimationFrame(animate);

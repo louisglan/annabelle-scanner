@@ -45,36 +45,31 @@ body {
   transition: opacity 0.25s ease;
 }
 
-/* top fade */
-.page-shadow.top {
-  top: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
-}
-
 /* bottom fade */
 .page-shadow.bottom {
   bottom: 0;
+  opacity: 1;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent);
 }
 
 .scanner {
-    position: fixed;
-    width: 2000px;
-    height: 10px;
-    background: green;
-    -webkit-box-shadow:0 0 20px white; 
-    -moz-box-shadow: 0 0 20px white; 
-    box-shadow:0 0 20px white;
-    opacity: 0.5;
-    animation: scan 2s linear forwards;
+  position: fixed;
+  width: 2000px;
+  height: 10px;
+  background: green;
+  -webkit-box-shadow: 0 0 20px white;
+  -moz-box-shadow: 0 0 20px white;
+  box-shadow: 0 0 20px white;
+  opacity: 0.5;
+  animation: scan 2s linear forwards;
 }
 
 @keyframes scan {
-    from {
-        transform: translateY(0vh);
-    }
+  from {
+    transform: translateY(0vh);
+  }
 
-    to {
-        transform: translateY(600svh);
-    }
+  to {
+    transform: translateY(600svh);
+  }
 }
